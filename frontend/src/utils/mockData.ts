@@ -108,66 +108,66 @@ export const mockSemesters: Semester[] = [
 export const mockStudents: Student[] = [
   {
     id: "s1",
-    name: "Amit Sharma",
-    rollNo: "CS2020001",
-    email: "amit@example.com",
-    branch: "CSE",
-    year: "3",
-    semesters: mockSemesters.slice(0, 4), // Currently in 4th semester
-  },
-  {
-    id: "s2",
-    name: "Priya Patel",
-    rollNo: "CS2020002",
-    email: "priya@example.com",
+    name: "Khushi Lohan",
+    rollNo: "221121",
+    email: "221121@iiitt.ac.in",
     branch: "CSE",
     year: "3",
     semesters: mockSemesters.slice(0, 6), // Currently in 6th semester
   },
   {
+    id: "s2",
+    name: "Harshini",
+    rollNo: "221114",
+    email: "221114@iiitt.ac.in",
+    branch: "CSE",
+    year: "3",
+    semesters: mockSemesters.slice(0,6), // Currently in 6th semester
+  },
+  {
     id: "s3",
-    name: "Rahul Kumar",
-    rollNo: "CS2019001",
-    email: "rahul@example.com",
+    name: "Vashu",
+    rollNo: "221232",
+    email: "221232@iiitt.ac.im",
     branch: "CSE",
     year: "4",
     semesters: mockSemesters, // Completed all 8 semesters
   },
   {
     id: "s4",
-    name: "Neha Gupta",
-    rollNo: "EC2020001",
-    email: "neha@example.com",
+    name: "abc",
+    rollNo: "211111",
+    email: "211111@iiitt.ac.in",
     branch: "ECE",
-    year: "3",
-    semesters: mockSemesters.slice(0, 4), // Currently in 4th semester
+    year: "2",
+    semesters: mockSemesters.slice(0,4), // Currently in 4th semester
   },
   {
     id: "s5",
-    name: "Vikram Singh",
-    rollNo: "EC2019001",
-    email: "vikram@example.com",
+    name: "Alexa",
+    rollNo: "221133",
+    email: "221133@iiitt.ac.in",
     branch: "ECE",
     year: "4",
-    semesters: mockSemesters.slice(0, 6), // Currently in 6th semester
+    semesters: mockSemesters.slice(0,8), // Currently in 6th semester
   },
   {
     id: "s6",
-    name: "Shreya Verma",
-    rollNo: "CS2022001",
-    email: "shreya@example.com",
+    name: "Shreya",
+    rollNo: "221125",
+    email: "shreya@gmail.com",
     branch: "CSE",
-    year: "2",
+    year: "1",
     semesters: mockSemesters.slice(0, 2), // Currently in 2nd semester
   },
   {
     id: "s7",
-    name: "Aakash Patel",
-    rollNo: "EC2022001",
-    email: "aakash@example.com",
+    name: "Aakash",
+    rollNo: "22",
+    email: "aakash@gmail.com",
     branch: "ECE",
-    year: "2",
-    semesters: mockSemesters.slice(0, 2), // Currently in 2nd semester
+    year: "3",
+    semesters: mockSemesters.slice(0,5), // Currently in 2nd semester
   },
   {
     id: "s8",
@@ -265,32 +265,32 @@ export const mockStudents: Student[] = [
 export const mockTeachers: Teacher[] = [
   {
     id: "t1",
-    name: "Dr. Sharma",
-    email: "sharma@example.com",
-    subjects: [algorithmSubject, createSubject("Computer Graphics", "CS304", 3, "Dr. Sharma", 5)],
+    name: "Dr. Anoop",
+    email: "anoop@iiitt.ac.in",
+    subjects: [algorithmSubject, createSubject("Software Engineering", "CS304", 3, "Dr. Sharma", 6)],
   },
   {
     id: "t2",
-    name: "Dr. Gupta",
-    email: "gupta@example.com",
-    subjects: [dbmsSubject, webDevSubject],
+    name: "Dr. Ambika",
+    email: "ambika@iiitt.ac.in",
+    subjects: [dbmsSubject, webDevSubject , createSubject("DBMS","CS312",3,"Dr. Ambika",6)],
   },
   {
     id: "t3",
-    name: "Dr. Singh",
-    email: "singh@example.com",
-    subjects: [aiSubject, mlSubject],
+    name: "Dr. Devesena",
+    email: "devesena@iiitt.ac.in",
+    subjects: [aiSubject, mlSubject , createSubject("AI","CS313",3,"Dr. Devesena",6)],
   },
 ];
 
 // Sample Login Data
 export const users = {
   students: [
-    { username: "student", password: "password", studentId: "s1" },
-    { username: "priya", password: "password", studentId: "s2" },
-    { username: "rahul", password: "password", studentId: "s3" },
-    { username: "neha", password: "password", studentId: "s4" },
-    { username: "vikram", password: "password", studentId: "s5" },
+    { username: "khushi_lohan", password: "password", studentId: "s1" },
+    { username: "harshini", password: "password", studentId: "s2" },
+    { username: "vashu", password: "password", studentId: "s3" },
+    { username: "abc", password: "password", studentId: "s4" },
+    { username: "alexa", password: "password", studentId: "s5" },
     { username: "shreya", password: "password", studentId: "s6" },
     { username: "aakash", password: "password", studentId: "s7" },
     { username: "ravi", password: "password", studentId: "s8" },
@@ -305,8 +305,8 @@ export const users = {
     { username: "divya", password: "password", studentId: "s17" },
   ],
   teachers: [
-    { username: "sharma", password: "password", teacherId: "t1" },
-    { username: "gupta", password: "password", teacherId: "t2" },
-    { username: "singh", password: "password", teacherId: "t3" },
+    { username: "anoop", password: "password", teacherId: "t1" },
+    { username: "ambika", password: "password", teacherId: "t2" },
+    { username: "devesena", password: "password", teacherId: "t3" },
   ],
 };

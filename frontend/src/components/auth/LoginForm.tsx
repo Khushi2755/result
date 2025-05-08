@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Button } from "../ui/button";
-import { Input } from "../ui/input";
-import { Label } from "../ui/label";
-import { toast } from "../ui/use-toast";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { toast } from "@/components/ui/use-toast";
+import { users } from "@/utils/mockData";
+import { mockStudents } from "@/utils/mockData";
 
 interface LoginFormProps {
   userType: "student" | "teacher";
@@ -13,16 +15,16 @@ interface LoginFormProps {
   setPassword: (value: string) => void;
 }
 
-const LoginForm = ({
+const LoginForm = ({ 
   userType,
   loginIdentifier,
   setLoginIdentifier,
   password,
-  setPassword,
+  setPassword
 }: LoginFormProps) => {
   const navigate = useNavigate();
 
-  const handleLogin = async () => {
+  const handleLogin = () => {
     if (!loginIdentifier || !password) {
       toast({
         variant: "destructive",
@@ -32,51 +34,59 @@ const LoginForm = ({
       return;
     }
 
-    try {
-      const response = await fetch("http://localhost:5000/api/auth/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: loginIdentifier,
-          password,
-        }),
-      });
-
-      const data = await response.json();
-
-      if (!response.ok) {
+    let user;
+    
+    if (userType === "student") {
+      // Find student by username
+      user = users.students.find(
+        (s) => s.username === loginIdentifier && s.password === password
+      );
+      
+      if (user) {
+        // Get the actual student data including fee defaulter status
+        const studentData = mockStudents.find(s => s.id === user.studentId);
+        
+        localStorage.setItem("user", JSON.stringify({
+          type: "student", 
+          id: user.studentId,
+          feeDefaulter: studentData?.feeDefaulter || false
+        }));
+        
+        navigate("/student");
+        toast({
+          title: "Login successful",
+          description: "Welcome back, student!",
+        });
+      } else {
         toast({
           variant: "destructive",
           title: "Login failed",
-          description: data.message || "Invalid username or password",
+          description: "Invalid username or password",
         });
-        return;
       }
-
-      // Save token and role
-      localStorage.setItem("token", data.token);
-      const role = data.role.toLowerCase();
-      localStorage.setItem("role", role);
-
-      // Store user object with type and id for dashboard
-      const userId = role === "student" ? "s1" : role === "teacher" ? "t1" : data.id;
-      localStorage.setItem("user", JSON.stringify({ type: role, id: userId }));
-
-      if (role === "student") {
-        navigate("/student");
-      } else if (role === "teacher") {
+    } else {
+      // Find teacher by username
+      user = users.teachers.find(
+        (t) => t.username === loginIdentifier && t.password === password
+      );
+      
+      if (user) {
+        localStorage.setItem("user", JSON.stringify({
+          type: "teacher", 
+          id: user.teacherId
+        }));
         navigate("/teacher");
+        toast({
+          title: "Login successful",
+          description: "Welcome back, teacher!",
+        });
       } else {
-        navigate("/");
+        toast({
+          variant: "destructive",
+          title: "Login failed",
+          description: "Invalid username or password",
+        });
       }
-    } catch (error) {
-      toast({
-        variant: "destructive",
-        title: "Login failed",
-        description: "An error occurred. Please try again.",
-      });
     }
   };
 
@@ -84,24 +94,27 @@ const LoginForm = ({
     <div className="space-y-4">
       <div className="space-y-2">
         <Label htmlFor={`${userType}-identifier`}>Username or Email</Label>
-        <Input
+        <Input 
           id={`${userType}-identifier`}
-          placeholder="username or email"
+          placeholder="username or email" 
           value={loginIdentifier}
           onChange={(e) => setLoginIdentifier(e.target.value)}
         />
       </div>
       <div className="space-y-2">
         <Label htmlFor={`${userType}-password`}>Password</Label>
-        <Input
-          id={`${userType}-password`}
-          type="password"
+        <Input 
+          id={`${userType}-password`} 
+          type="password" 
           placeholder="••••••••"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
       </div>
-      <Button className="w-full" onClick={handleLogin}>
+      <Button 
+        className="w-full" 
+        onClick={handleLogin}
+      >
         Login as {userType === "student" ? "Student" : "Teacher"}
       </Button>
     </div>

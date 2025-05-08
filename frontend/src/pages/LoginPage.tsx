@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
@@ -49,13 +48,6 @@ const LoginPage = () => {
               Don't have an account? <Link to="/register" className="text-purple-400 hover:underline">Register here</Link>
             </div>
           </CardContent>
-          <CardFooter className="flex flex-col space-y-2">
-            <div className="text-sm text-center text-gray-400">
-              <p className="mb-2">Sample Student Logins:</p>
-              <p>student / password, priya / password, rahul / password</p>
-              <p className="mt-2">Sample Teacher Login: sharma / password</p>
-            </div>
-          </CardFooter>
         </Card>
       </div>
     </div>
